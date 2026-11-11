@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="RecordLib/RecordLib.csproj" />
+  <Project Path="RecordSystemRESTService/RecordSystemRESTService.csproj" Id="f4ed5f4a-ed55-4e7a-836f-b93857fe6e3f" />
   <Project Path="RecordSystemTests/RecordSystemTests.csproj" Id="4164c4a3-2ecb-482d-a778-afcf65889457" />
 </Solution>
