@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="RecordLib/RecordLib.csproj" />
+  <Project Path="RecordSystemTests/RecordSystemTests.csproj" Id="4164c4a3-2ecb-482d-a778-afcf65889457" />
 </Solution>
