@@ -1,0 +1,17 @@
+﻿namespace RecordLib
+{
+    public class Record
+    {
+        public string Title { get; set; }
+        public string Artist { get; set; }
+        public int Duration { get; set; }
+        public int PublicationYear { get; set; }
+        public Record()
+        {
+            Title = "";
+            Artist = "";
+            Duration = 0;
+            PublicationYear = 0;
+        }
+    }
+}
