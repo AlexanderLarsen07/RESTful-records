@@ -35,6 +35,49 @@ namespace RecordLib
             return new List<Record>(_records);
         }
 
+        public List<Record> GetAll(string? title = null, 
+                                   string? artist = null, 
+                                   int? minDuration = null, 
+                                   int? maxDuration = null, 
+                                   int? minPubYear = null, 
+                                   int? maxPubYear = null)
+        {
+            List<Record> records = new List<Record>();
+
+            foreach(Record record in _records)
+            {
+                int count = 0;
+                if(title == null || record.Title.Contains(title, StringComparison.OrdinalIgnoreCase))
+                {
+                    count++;
+                }
+                if(artist == null || record.Artist.Contains(artist, StringComparison.OrdinalIgnoreCase))
+                {
+                    count++;
+                }
+                if (minDuration == null || record.Duration > minDuration)
+                {
+                    count++;
+                }
+                if (maxDuration == null || record.Duration < maxDuration)
+                {
+                    count++;
+                }
+                if (minPubYear == null || record.PublicationYear > minPubYear)
+                {
+                    count++;
+                }
+                if (maxPubYear == null || record.PublicationYear > maxPubYear)
+                {
+                    count++;
+                }
+                if (count == 6)
+                records.Add(record);
+            }
+
+            return records;
+        }
+
         public Record? GetById(int id)
         {
             return _records.Find(r => r.Id == id);
