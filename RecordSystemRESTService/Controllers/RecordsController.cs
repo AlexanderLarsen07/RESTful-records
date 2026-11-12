@@ -19,9 +19,15 @@ namespace RecordSystemRESTService.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<IEnumerable<Record>> Get()
+        public ActionResult<IEnumerable<Record>> Get([FromQuery] int? id = null,
+                                                     [FromQuery] string? title = null,
+                                                     [FromQuery] string? artist = null,
+                                                     [FromQuery] int? minDuration = null,
+                                                     [FromQuery] int? maxDuration = null, 
+                                                     [FromQuery] int? minPubYear = null, 
+                                                     [FromQuery] int? maxPubYear = null)
         {
-            List<Record> records = _repository.GetAll();
+            List<Record> records = _repository.GetAll(id, title, artist, minDuration, maxDuration, minPubYear, maxPubYear);
             if (records.Count == 0)
             {
                 return NotFound();

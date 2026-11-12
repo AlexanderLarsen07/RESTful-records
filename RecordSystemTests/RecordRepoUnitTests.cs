@@ -25,5 +25,26 @@ namespace RecordSystemTests
             Assert.AreEqual(expectedCount, actualCount);
 
         }
+        [TestMethod]
+        public void GetAllWithParamsReturnsRecords()
+        {
+            //arrange
+
+            int expected = 1;
+            //act
+            int actual = _recordRepository.GetAll("record 1").Count;
+
+            //assert
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void GetAllWithParamsNoMatching()
+        {
+            //act and assert
+
+            Assert.IsEmpty(_recordRepository.GetAll("record 4"));
+        }
     }
 }
