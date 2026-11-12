@@ -35,7 +35,8 @@ namespace RecordLib
             return new List<Record>(_records);
         }
 
-        public List<Record> GetAll(string? title = null, 
+        public List<Record> GetAll(int? id = null , 
+                                   string? title = null, 
                                    string? artist = null, 
                                    int? minDuration = null, 
                                    int? maxDuration = null, 
@@ -47,6 +48,10 @@ namespace RecordLib
             foreach(Record record in _records)
             {
                 int count = 0;
+                if(id == null || record.Id == id)
+                {
+                    count++;
+                }
                 if(title == null || record.Title.Contains(title, StringComparison.OrdinalIgnoreCase))
                 {
                     count++;
@@ -71,8 +76,8 @@ namespace RecordLib
                 {
                     count++;
                 }
-                if (count == 6)
-                records.Add(record);
+                if (count == 7)
+                    records.Add(record);
             }
 
             return records;
