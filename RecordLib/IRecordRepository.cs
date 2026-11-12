@@ -7,10 +7,10 @@ namespace RecordLib
 {
     public interface IRecordRepository
     {
-        Record GetById(int id);
+        Record? GetById(int id);
         List<Record> GetAll();
         Record Add(Record record);
-        Record Update(int id, Record record);
-        Record Delete(int id);
+        Record? Update(int id, Record record);
+        Record? Delete(int id);
     }
 }
