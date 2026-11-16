@@ -56,6 +56,7 @@ namespace RecordSystemRESTService.Controllers
         [Authorize]
         public void Post([FromBody] string value)
         {
+
         }
 
         // PUT api/<RecordsController>/5
@@ -70,6 +71,7 @@ namespace RecordSystemRESTService.Controllers
         [Authorize]
         public void Delete(int id)
         {
+
         }
     }
 }
