@@ -22,12 +22,21 @@ namespace RecordLib
 
         public Record Add(Record record)
         {
-            throw new NotImplementedException();
+            record.Id = _nextId++;
+            _records.Add(record);
+            return record;
         }
 
         public Record? Delete(int id)
         {
-            throw new NotImplementedException();
+            Record? record = GetById(id);
+            if(record == null)
+            {
+                return null;
+            }
+            _records.Remove(record);
+            return record;
+
         }
 
         public List<Record> GetAll()

@@ -9,6 +9,7 @@
         public int PublicationYear { get; set; }
         public Record()
         {
+            Id = 0;
             Title = "";
             Artist = "";
             Duration = 0;

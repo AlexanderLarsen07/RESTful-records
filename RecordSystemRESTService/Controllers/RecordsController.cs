@@ -54,8 +54,17 @@ namespace RecordSystemRESTService.Controllers
         // POST api/<RecordsController>
         [HttpPost]
         [Authorize]
-        public void Post([FromBody] string value)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<Record?> Post([FromBody] RecordDTO recordDTO)
         {
+            Record record = _repository.Add(RecordDTOHelper.DTOtoClass(recordDTO));
+            if(_repository.GetById(record.Id) != null)
+            {
+                return Created($"/api/records/{record.Id}", record);
+            }
+            return BadRequest();
         }
 
         // PUT api/<RecordsController>/5
@@ -68,8 +77,17 @@ namespace RecordSystemRESTService.Controllers
         // DELETE api/<RecordsController>/5
         [HttpDelete("{id}")]
         [Authorize]
-        public void Delete(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<Record?> Delete(int id)
         {
+            Record? record = _repository.Delete(id);
+            if(record != null)
+            {
+                return Ok(record);
+            }
+            return NotFound();
         }
     }
 }
