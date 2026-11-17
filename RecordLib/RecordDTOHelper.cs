@@ -10,11 +10,11 @@ namespace RecordLib
         {
             return new Record
             {
-                Id = DTO.id,
-                Artist = DTO.artist,
-                Title = DTO.title,
-                Duration = DTO.duration,
-                PublicationYear = DTO.publicationYear
+                Id = DTO.Id,
+                Artist = DTO.Artist,
+                Title = DTO.Title,
+                Duration = DTO.Duration,
+                PublicationYear = DTO.PublicationYear
             };
         }
     }
