@@ -69,9 +69,33 @@ namespace RecordSystemRESTService.Controllers
 
         // PUT api/<RecordsController>/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [Authorize]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult<Record> Put(int id, [FromBody] RecordDTO dto)
         {
+            try
+            {
+                var updatedRecord = _repository.Update(id, RecordDTOHelper.DTOtoClass(dto));
+                if (updatedRecord != null)
+                {
+                    return Ok(updatedRecord);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (ArgumentException aex)
+            {
+                return BadRequest(aex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // DELETE api/<RecordsController>/5
