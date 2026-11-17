@@ -96,5 +96,50 @@ namespace RecordSystemTests
             // assert
             Assert.AreEqual(initalCount, actualCount);
         }
+
+        [TestMethod]
+        public void UpdateWithNonExistentIdReturnsNull()
+        {
+            // Arrange 
+            Record updatedRecord = new Record
+            {
+                Id = 0,
+                Artist = "Updated Artist",
+                Title = "Updated Title",
+                Duration = 300,
+                PublicationYear = 2020
+
+            };
+
+            // Act
+            Record? result = _recordRepository.Update(-1, updatedRecord);
+            // Assert
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void UpdateSuccessfullyUpdates()
+        {
+            // Arrange 
+            Record initialRecord = _recordRepository.GetAll().Last();
+            Record updatedRecord = new Record
+            {
+                Id = 0,
+                Artist = "Updated Artist",
+                Title = "Updated Title",
+                Duration = 300,
+                PublicationYear = 2020
+
+            };
+
+            // Act
+            Record? result = _recordRepository.Update(initialRecord.Id, updatedRecord);
+            // Assert
+            Record newRecord = _recordRepository.GetById(initialRecord.Id);
+            Assert.AreEqual(updatedRecord.Artist, newRecord.Artist);
+            Assert.AreEqual(updatedRecord.Title, newRecord.Title);
+            Assert.AreEqual(updatedRecord.Duration, newRecord.Duration);
+            Assert.AreEqual(updatedRecord.PublicationYear, newRecord.PublicationYear);
+        }
     }
 }

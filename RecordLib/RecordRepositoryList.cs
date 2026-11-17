@@ -99,7 +99,15 @@ namespace RecordLib
 
         public Record? Update(int id, Record record)
         {
-            throw new NotImplementedException();
+            Record? recordToUpdate = GetById(id);
+            if (recordToUpdate!= null)
+            {
+                recordToUpdate.Title = record.Title;
+                recordToUpdate.Artist = record.Artist;
+                recordToUpdate.Duration = record.Duration;
+                recordToUpdate.PublicationYear = record.PublicationYear;
+            }
+            return recordToUpdate;
         }
     }
 }
